@@ -47,7 +47,8 @@
     absname/1,
     joinpath/2,
     getenv/1,
-    split_path/1
+    split_path/1,
+    quote/1
     ]).
 
 -define(TIMEOUT, 15000).
@@ -281,6 +282,15 @@ getenv(Key) ->
 
 split_path(Path) ->
     string:tokens(Path, pathsep()).
+
+%%
+%% @doc Return quoted string
+%%
+
+-spec quote(String::string()) -> String::string().
+
+quote(String) ->
+    "\"" ++ String ++ "\"".
 
 %%%
 %%% Internal functions

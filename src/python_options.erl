@@ -158,9 +158,10 @@ find_python(Python) ->
             throw(not_found);
         Filename ->
             Fullname = erlport_options:absname(Filename),
-            case check_python_version(Fullname) of
+            Quoted = erlport_options:quote(Fullname),
+            case check_python_version(Quoted) of
                 {ok, {MajVersion, _, _}} ->
-                    {ok, Fullname ++ Options, MajVersion};
+                    {ok, Quoted ++ Options, MajVersion};
                 {error, _}=Error ->
                     Error
             end
